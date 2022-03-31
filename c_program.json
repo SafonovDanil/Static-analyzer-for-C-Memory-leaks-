@@ -1,0 +1,152 @@
+{
+    "functions": [
+        {
+            "func_name": "test3",
+            "nodes": [
+                {
+                    "lines": [
+                        {
+                            "init_list": [
+                            ],
+                            "line": "int* test3()",
+                            "type": 2
+                        },
+                        {
+                            "line": "int* p = new int;",
+                            "type": 1,
+                            "var_type" : "int*",
+                            "var_name": "p",
+                            "right": "new int"
+                        },
+                        {
+                            "line": "int **ptr;",
+                            "type": 1,
+                            "var_type" : "int",
+                            "var_name": "**ptr"
+                        },
+                        {
+                            "line": "*ptr = p",
+                            "type": 3,
+                            "left" : "*ptr",
+                            "right": "p"
+                        },
+                        {
+                            "line": "free(*ptr)",
+                            "type": 6,
+                            "arg" : "*ptr",
+                            "right": "&p"
+                        }
+                    ],
+                    "node_id": 0
+                }
+            ]
+        }
+        ,
+        {
+            "func_name": "test1",
+            "nodes": [
+                {
+                    "lines": [
+                        {
+                            "init_list": [
+                            ],
+                            "line": "int* test1()",
+                            "type": 2
+                        },
+                        {
+                            "line": "return new int",
+                            "type": 7,
+                            "arg": "new int"
+                        }
+                    ],
+                    "node_id": 0
+                }
+            ]
+        },
+        {
+            "func_name": "test2",
+            "nodes": [
+                {
+                    "lines": [
+                        {
+                            "init_list": [
+                            ],
+                            "line": "int* test2()",
+                            "type": 2
+                        },
+                        {
+                            "line": "int *p = new int;",
+                            "type": 1,
+                            "var_type" : "int",
+                            "var_name": "*p",
+                            "right": "new int"
+                        },
+                        {
+                            "line": "return new int",
+                            "type": 7,
+                            "arg": "new int"
+                        }
+                    ],
+                    "node_id": 0
+                }
+            ]
+        },
+        {
+            "func_name": "buf_select",
+            "nodes": [
+                {
+                    "lines": [
+                        {
+                            "init_list": [
+                                {
+                                    "var_name": "len",
+                                    "var_type": "int"
+                                    },
+                                    {
+                                    "var_name": "**p",
+                                    "var_type": "int"
+                                },
+                                {
+                                    "var_name": "*fastbuf",
+                                    "var_type": "int"
+                                }
+                            ],
+                            "line": "void bufSelect(int len, int **p, int *fastbuf)",
+                            "type": 2
+                        },
+                        {
+                            "line": "if (len <= 10)",
+                            "type": 4,
+                            "predicate": "len <= 10",
+                            "true_node_id": 1,
+                            "false_node_id": 2
+                        }
+                    ],
+                    "node_id": 0
+                },
+                {
+                    "node_id": 1,
+                    "lines":[
+                        {
+                            "line": "*p = fastbuf;",
+                            "type": 3,
+                            "left": "*p",
+                            "right": "fastbuf"
+                        }
+                    ]
+                },
+                {
+                    "node_id": 2,
+                    "lines":[
+                        {
+                            "line": "*p = (int *)malloc(len);",
+                            "type": 3,
+                            "left": "*p",
+                            "right": "(int *)malloc(len);"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

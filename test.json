@@ -1,0 +1,535 @@
+{
+    "functions": [
+        {
+            "func_name": "test3",
+            "init_list": [
+            ],
+            "nodes": [
+                {
+                    "lines": [
+                        {
+                            "init_list": [
+                            ],
+                            "line": "int* test3()",
+                            "type": 2
+                        },
+                        {
+                            "line": "int* p = new int;",
+                            "right": "new int",
+                            "type": 1,
+                            "var_name": "p",
+                            "var_type": "int*"
+                        },
+                        {
+                            "line": "int **ptr;",
+                            "type": 1,
+                            "var_name": "**ptr",
+                            "var_type": "int"
+                        },
+                        {
+                            "left": "*ptr",
+                            "line": "*ptr = p",
+                            "right": "p",
+                            "type": 3
+                        },
+                        {
+                            "arg": "*ptr",
+                            "line": "free(*ptr)",
+                            "right": "&p",
+                            "type": 6
+                        }
+                    ],
+                    "mstg": [
+                        {
+                            "action": "ToExtern",
+                            "attr_rt": "p",
+                            "memory_type": "Heap",
+                            "state": "Escaped",
+                            "var_name": "HeapObj1"
+                        },
+                        {
+                            "action": "ToExtern",
+                            "attr_lt": "Reg",
+                            "attr_rt": "*ptr",
+                            "memory_type": "Externed",
+                            "state": "Escaped",
+                            "var_name": "p"
+                        },
+                        {
+                            "action": "ToFree",
+                            "attr_lt": "toBase",
+                            "memory_type": "Externed",
+                            "state": "Freed",
+                            "var_name": "*ptr"
+                        }
+                    ],
+                    "node_id": 0
+                }
+            ],
+            "path": [
+                [
+                    {
+                        "act": [
+                            {
+                                "action": "ToExtern",
+                                "attr_rt": "p",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj1"
+                            },
+                            {
+                                "action": "ToExtern",
+                                "attr_lt": "Reg",
+                                "attr_rt": "*ptr",
+                                "memory_type": "Externed",
+                                "state": "Escaped",
+                                "var_name": "p"
+                            },
+                            {
+                                "action": "ToFree",
+                                "attr_lt": "toBase",
+                                "memory_type": "Externed",
+                                "state": "Freed",
+                                "var_name": "*ptr"
+                            }
+                        ],
+                        "predicate": [
+                        ]
+                    }
+                ]
+            ],
+            "summary": [
+                [
+                    {
+                        "act": [
+                        ],
+                        "leaks list": [
+                        ],
+                        "predicate": [
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            "func_name": "test1",
+            "init_list": [
+            ],
+            "nodes": [
+                {
+                    "lines": [
+                        {
+                            "init_list": [
+                            ],
+                            "line": "int* test1()",
+                            "type": 2
+                        },
+                        {
+                            "arg": "new int",
+                            "line": "return new int",
+                            "type": 7
+                        }
+                    ],
+                    "mstg": [
+                        {
+                            "action": "ToReturn",
+                            "attr_rt": "rv",
+                            "memory_type": "Heap",
+                            "state": "Escaped",
+                            "var_name": "HeapObj2"
+                        }
+                    ],
+                    "node_id": 0
+                }
+            ],
+            "path": [
+                [
+                    {
+                        "act": [
+                            {
+                                "action": "ToReturn",
+                                "attr_rt": "rv",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj2"
+                            }
+                        ],
+                        "predicate": [
+                        ]
+                    }
+                ]
+            ],
+            "summary": [
+                [
+                    {
+                        "act": [
+                            {
+                                "action": "ToReturn",
+                                "attr_rt": "rv",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj2"
+                            }
+                        ],
+                        "leaks list": [
+                        ],
+                        "predicate": [
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            "func_name": "test2",
+            "init_list": [
+            ],
+            "nodes": [
+                {
+                    "lines": [
+                        {
+                            "init_list": [
+                            ],
+                            "line": "int* test2()",
+                            "type": 2
+                        },
+                        {
+                            "line": "int *p = new int;",
+                            "right": "new int",
+                            "type": 1,
+                            "var_name": "*p",
+                            "var_type": "int"
+                        },
+                        {
+                            "arg": "new int",
+                            "line": "return new int",
+                            "type": 7
+                        }
+                    ],
+                    "mstg": [
+                        {
+                            "action": "ToExtern",
+                            "attr_rt": "*p",
+                            "memory_type": "Heap",
+                            "state": "Escaped",
+                            "var_name": "HeapObj2"
+                        },
+                        {
+                            "action": "ToReturn",
+                            "attr_rt": "rv",
+                            "memory_type": "Heap",
+                            "state": "Escaped",
+                            "var_name": "HeapObj3"
+                        }
+                    ],
+                    "node_id": 0
+                }
+            ],
+            "path": [
+                [
+                    {
+                        "act": [
+                            {
+                                "action": "ToExtern",
+                                "attr_rt": "*p",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj2"
+                            },
+                            {
+                                "action": "ToReturn",
+                                "attr_rt": "rv",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj3"
+                            }
+                        ],
+                        "predicate": [
+                        ]
+                    }
+                ]
+            ],
+            "summary": [
+                [
+                    {
+                        "act": [
+                            {
+                                "action": "ToExtern",
+                                "attr_rt": "*p",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj2"
+                            },
+                            {
+                                "action": "ToReturn",
+                                "attr_rt": "rv",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj3"
+                            }
+                        ],
+                        "leaks list": [
+                            {
+                                "at": {
+                                    "action": "ToExtern",
+                                    "attr_rt": "*p",
+                                    "memory_type": "Heap",
+                                    "state": "Escaped",
+                                    "var_name": "HeapObj2"
+                                },
+                                "type": "Unfreed memory"
+                            }
+                        ],
+                        "predicate": [
+                        ]
+                    }
+                ]
+            ]
+        },
+        {
+            "func_name": "buf_select",
+            "init_list": [
+                {
+                    "var_name": "len",
+                    "var_type": "int"
+                },
+                {
+                    "var_name": "**p",
+                    "var_type": "int"
+                },
+                {
+                    "var_name": "*fastbuf",
+                    "var_type": "int"
+                }
+            ],
+            "nodes": [
+                {
+                    "edges": {
+                        "false_node_id": 2,
+                        "predicate": "len <= 10",
+                        "true_node_id": 1
+                    },
+                    "lines": [
+                        {
+                            "init_list": [
+                                {
+                                    "var_name": "len",
+                                    "var_type": "int"
+                                },
+                                {
+                                    "var_name": "**p",
+                                    "var_type": "int"
+                                },
+                                {
+                                    "var_name": "*fastbuf",
+                                    "var_type": "int"
+                                }
+                            ],
+                            "line": "void bufSelect(int len, int **p, int *fastbuf)",
+                            "type": 2
+                        },
+                        {
+                            "false_node_id": 2,
+                            "line": "if (len <= 10)",
+                            "predicate": "len <= 10",
+                            "true_node_id": 1,
+                            "type": 4
+                        }
+                    ],
+                    "mstg": [
+                        {
+                            "attr_lt": "Reg",
+                            "memory_type": "Externed",
+                            "state": "Accessed",
+                            "var_name": "*p"
+                        },
+                        {
+                            "attr_lt": "Reg",
+                            "memory_type": "Externed",
+                            "state": "Accessed",
+                            "var_name": "p"
+                        },
+                        {
+                            "attr_lt": "Reg",
+                            "memory_type": "Externed",
+                            "state": "Accessed",
+                            "var_name": "fastbuf"
+                        }
+                    ],
+                    "node_id": 0
+                },
+                {
+                    "lines": [
+                        {
+                            "left": "*p",
+                            "line": "*p = fastbuf;",
+                            "right": "fastbuf",
+                            "type": 3
+                        }
+                    ],
+                    "mstg": [
+                        {
+                            "action": "ToExtern",
+                            "attr_lt": "Reg",
+                            "attr_rt": "*p",
+                            "memory_type": "Externed",
+                            "state": "Escaped",
+                            "var_name": "fastbuf"
+                        }
+                    ],
+                    "node_id": 1
+                },
+                {
+                    "lines": [
+                        {
+                            "left": "*p",
+                            "line": "*p = (int *)malloc(len);",
+                            "right": "(int *)malloc(len);",
+                            "type": 3
+                        }
+                    ],
+                    "mstg": [
+                        {
+                            "action": "ToExtern",
+                            "attr_rt": "*p",
+                            "memory_type": "Heap",
+                            "state": "Escaped",
+                            "var_name": "HeapObj3"
+                        }
+                    ],
+                    "node_id": 2
+                }
+            ],
+            "path": [
+                [
+                    {
+                        "act": [
+                            {
+                                "attr_lt": "Reg",
+                                "memory_type": "Externed",
+                                "state": "Accessed",
+                                "var_name": "*p"
+                            },
+                            {
+                                "attr_lt": "Reg",
+                                "memory_type": "Externed",
+                                "state": "Accessed",
+                                "var_name": "p"
+                            },
+                            {
+                                "attr_lt": "Reg",
+                                "memory_type": "Externed",
+                                "state": "Accessed",
+                                "var_name": "fastbuf"
+                            },
+                            {
+                                "action": "ToExtern",
+                                "attr_rt": "*p",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj3"
+                            }
+                        ],
+                        "predicate": [
+                            "!len <= 10"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "act": [
+                            {
+                                "attr_lt": "Reg",
+                                "memory_type": "Externed",
+                                "state": "Accessed",
+                                "var_name": "*p"
+                            },
+                            {
+                                "attr_lt": "Reg",
+                                "memory_type": "Externed",
+                                "state": "Accessed",
+                                "var_name": "p"
+                            },
+                            {
+                                "attr_lt": "Reg",
+                                "memory_type": "Externed",
+                                "state": "Accessed",
+                                "var_name": "fastbuf"
+                            },
+                            {
+                                "action": "ToExtern",
+                                "attr_lt": "Reg",
+                                "attr_rt": "*p",
+                                "memory_type": "Externed",
+                                "state": "Escaped",
+                                "var_name": "fastbuf"
+                            }
+                        ],
+                        "predicate": [
+                            "len <= 10"
+                        ]
+                    }
+                ]
+            ],
+            "summary": [
+                [
+                    {
+                        "act": [
+                            {
+                                "action": "ToExtern",
+                                "attr_rt": "*p",
+                                "memory_type": "Heap",
+                                "state": "Escaped",
+                                "var_name": "HeapObj3"
+                            }
+                        ],
+                        "leaks list": [
+                            {
+                                "at": {
+                                    "action": "ToExtern",
+                                    "attr_rt": "*p",
+                                    "memory_type": "Heap",
+                                    "state": "Escaped",
+                                    "var_name": "HeapObj3"
+                                },
+                                "type": "Possible leak"
+                            }
+                        ],
+                        "predicate": [
+                            "!len <= 10"
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "act": [
+                            {
+                                "action": "ToExtern",
+                                "attr_lt": "Reg",
+                                "attr_rt": "*p",
+                                "memory_type": "Externed",
+                                "state": "Escaped",
+                                "var_name": "fastbuf"
+                            }
+                        ],
+                        "leaks list": [
+                            {
+                                "at": {
+                                    "action": "ToExtern",
+                                    "attr_lt": "Reg",
+                                    "attr_rt": "*p",
+                                    "memory_type": "Externed",
+                                    "state": "Escaped",
+                                    "var_name": "fastbuf"
+                                },
+                                "type": "Possible leak"
+                            }
+                        ],
+                        "predicate": [
+                            "len <= 10"
+                        ]
+                    }
+                ]
+            ]
+        }
+    ]
+}
