@@ -183,24 +183,24 @@ QJsonArray intraprocedureAnalysis(QJsonArray& array){
             auto str =  state_map.firstKey();
             state_map.remove(str);
         }
-            QJsonObject copy = array[i].toObject();
-            QJsonArray acts;
-            for(int i = 0, n = for_analysis.size(); i < n; i++){    //анализ ключевых действий на утечки
-                if(retrain.contains(for_analysis[i].first) && !discard.contains(for_analysis[i].first))
-                    acts.append(for_analysis[i].second);
+        QJsonObject copy = array[i].toObject();
+        QJsonArray acts;
+        for(int i = 0, n = for_analysis.size(); i < n; i++){    //анализ ключевых действий на утечки
+            if(retrain.contains(for_analysis[i].first) && !discard.contains(for_analysis[i].first))
+                acts.append(for_analysis[i].second);
+        }
+        while(!for_analysis.empty()){   //поиск неосвобожденной памяти
+            if(for_analysis.first().second["memory_type"].toString() == "Heap" &&
+                    !externs.contains(for_analysis.first().second["attr_rt"].toString()) &&
+                    for_analysis.first().second["action"] != "ToReturn" &&
+                    !discard.contains(for_analysis.first().second["attr_rt"].toString())){
+                QJsonObject leak_obj;
+                leak_obj["type"] = "Unfreed memory";
+                leak_obj["at"] = for_analysis.first().second.toObject();
+                leak_list.append(leak_obj);
             }
-            while(!for_analysis.empty()){   //поиск неосвобожденной памяти
-                if(for_analysis.first().second["memory_type"].toString() == "Heap" &&
-                        !externs.contains(for_analysis.first().second["attr_rt"].toString()) &&
-                        for_analysis.first().second["action"] != "ToReturn" &&
-                        !discard.contains(for_analysis.first().second["attr_rt"].toString())){
-                    QJsonObject leak_obj;
-                    leak_obj["type"] = "Unfreed memory";
-                    leak_obj["at"] = for_analysis.first().second.toObject();
-                    leak_list.append(leak_obj);
-                }
-                for_analysis.removeFirst();
-            }
+            for_analysis.removeFirst();
+        }
         copy["act"] = acts;
         copy["leaks list"] = leak_list;
         res.append(copy);
@@ -410,7 +410,6 @@ void leakDetect(QString file_name){
         funcObj["nodes"] = nodesArray;
         funcObj["init_list"] = init_list;
 
-
         //обход графа в глубину для составления путей исполнения и их анализа
 
         QStack<QPair<int,int>> stack; //стек для обхода графа в глубину
@@ -428,6 +427,8 @@ void leakDetect(QString file_name){
         QJsonArray startArray;
         startArray.append(QJsonObject ());
         summary_map.insert(-1, startArray);
+
+        QList<int> path;
 
         bool flag = true;
         while(!tmpFunc[j]["edges"]["true_node_id"].isUndefined() || !stack.isEmpty() || flag){ //обход в глубину

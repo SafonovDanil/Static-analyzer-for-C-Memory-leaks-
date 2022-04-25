@@ -6,6 +6,8 @@
             ],
             "nodes": [
                 {
+                    "edges": {
+                    },
                     "lines": [
                         {
                             "init_list": [
@@ -117,6 +119,8 @@
             ],
             "nodes": [
                 {
+                    "edges": {
+                    },
                     "lines": [
                         {
                             "init_list": [
@@ -185,6 +189,8 @@
             ],
             "nodes": [
                 {
+                    "edges": {
+                    },
                     "lines": [
                         {
                             "init_list": [
@@ -304,9 +310,6 @@
             "nodes": [
                 {
                     "edges": {
-                        "false_node_id": 2,
-                        "predicate": "len <= 10",
-                        "true_node_id": 1
                     },
                     "lines": [
                         {
@@ -358,6 +361,8 @@
                     "node_id": 0
                 },
                 {
+                    "edges": {
+                    },
                     "lines": [
                         {
                             "left": "*p",
@@ -379,6 +384,8 @@
                     "node_id": 1
                 },
                 {
+                    "edges": {
+                    },
                     "lines": [
                         {
                             "left": "*p",
@@ -420,52 +427,9 @@
                                 "memory_type": "Externed",
                                 "state": "Accessed",
                                 "var_name": "fastbuf"
-                            },
-                            {
-                                "action": "ToExtern",
-                                "attr_rt": "*p",
-                                "memory_type": "Heap",
-                                "state": "Escaped",
-                                "var_name": "HeapObj3"
                             }
                         ],
                         "predicate": [
-                            "!len <= 10"
-                        ]
-                    }
-                ],
-                [
-                    {
-                        "act": [
-                            {
-                                "attr_lt": "Reg",
-                                "memory_type": "Externed",
-                                "state": "Accessed",
-                                "var_name": "*p"
-                            },
-                            {
-                                "attr_lt": "Reg",
-                                "memory_type": "Externed",
-                                "state": "Accessed",
-                                "var_name": "p"
-                            },
-                            {
-                                "attr_lt": "Reg",
-                                "memory_type": "Externed",
-                                "state": "Accessed",
-                                "var_name": "fastbuf"
-                            },
-                            {
-                                "action": "ToExtern",
-                                "attr_lt": "Reg",
-                                "attr_rt": "*p",
-                                "memory_type": "Externed",
-                                "state": "Escaped",
-                                "var_name": "fastbuf"
-                            }
-                        ],
-                        "predicate": [
-                            "len <= 10"
                         ]
                     }
                 ]
@@ -474,58 +438,10 @@
                 [
                     {
                         "act": [
-                            {
-                                "action": "ToExtern",
-                                "attr_rt": "*p",
-                                "memory_type": "Heap",
-                                "state": "Escaped",
-                                "var_name": "HeapObj3"
-                            }
                         ],
                         "leaks list": [
-                            {
-                                "at": {
-                                    "action": "ToExtern",
-                                    "attr_rt": "*p",
-                                    "memory_type": "Heap",
-                                    "state": "Escaped",
-                                    "var_name": "HeapObj3"
-                                },
-                                "type": "Possible leak"
-                            }
                         ],
                         "predicate": [
-                            "!len <= 10"
-                        ]
-                    }
-                ],
-                [
-                    {
-                        "act": [
-                            {
-                                "action": "ToExtern",
-                                "attr_lt": "Reg",
-                                "attr_rt": "*p",
-                                "memory_type": "Externed",
-                                "state": "Escaped",
-                                "var_name": "fastbuf"
-                            }
-                        ],
-                        "leaks list": [
-                            {
-                                "at": {
-                                    "action": "ToExtern",
-                                    "attr_lt": "Reg",
-                                    "attr_rt": "*p",
-                                    "memory_type": "Externed",
-                                    "state": "Escaped",
-                                    "var_name": "fastbuf"
-                                },
-                                "type": "Possible leak"
-                            }
-                        ],
-                        "predicate": [
-                            "len <= 10"
                         ]
                     }
                 ]
