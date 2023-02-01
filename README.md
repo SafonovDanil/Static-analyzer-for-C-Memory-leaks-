@@ -1,2 +1,2 @@
 NIR_Safonov
-Graduate work for TSU
+Сourse work for TSU
